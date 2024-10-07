@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
@@ -20,6 +20,26 @@ function App() {
   const email = queryParams.get("email");
   const currency = queryParams.get("currency");
   const [showSuccessCredit, setShowSuccessCredit] = useState(false);
+  const [showCoupon, setShowCoupon] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
+  const [discountedPrice, setDiscountedPrice] = useState(null);
+  const [couponApplied, setCouponApplied] = useState(false);
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/product/coupon-show/${credit}`
+      );
+      setShowCoupon(response.data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  };
 
   const handleAddCredit = () => {
     axios
@@ -30,6 +50,19 @@ function App() {
       .catch(() => {
         console.log("network error");
       });
+  };
+
+  const handleCouponApply = async () => {
+    try {
+      const response = await axios.post(`${baseUrl}/api/product/apply-coupon`, {
+        productId: product.id,
+        couponCode,
+      });
+      setDiscountedPrice(price * (1 - response.data.discount / 100).toFixed(2));
+      setCouponApplied(true);
+    } catch (error) {
+      console.error("Error applying coupon:", error);
+    }
   };
 
   const handleCloseWindow = () => {
@@ -58,14 +91,38 @@ function App() {
                 <p className="value">{credit} Credit</p>
               </div>
               <div className="payment-info">
-                <p className="value">
-                  {price} {currency.toUpperCase()}
-                </p>
+                {discountedPrice ? (
+                  <p className="value price-line">
+                    <span className="original-price">
+                      <s>{price}</s>
+                    </span>{" "}
+                    <span className="discounted-price">{discountedPrice}</span>{" "}
+                    {currency.toUpperCase()}
+                  </p>
+                ) : (
+                  <p className="value">
+                    {price} {currency.toUpperCase()}
+                  </p>
+                )}
               </div>
             </div>
+            {showCoupon && !couponApplied && (
+              <div className="coupon-container">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder="Enter coupon code"
+                  disabled={couponApplied}
+                />
+                <button onClick={handleCouponApply} disabled={couponApplied}>
+                  Apply
+                </button>
+              </div>
+            )}
             <Elements stripe={stripePromise}>
               <CheckoutForm
-                amount={price}
+                amount={discountedPrice || price}
                 currency={currency}
                 callBack={handleAddCredit}
               />
