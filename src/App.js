@@ -90,7 +90,7 @@ function App() {
               <div className="payment-info">
                 {discountedPrice ? (
                   <p className="value price-line">
-                    <span className="original-price">
+                    <span className="original-price" style={{ colors: "red" }}>
                       <s>{price}</s>
                     </span>{" "}
                     <span className="discounted-price">{discountedPrice}</span>{" "}
