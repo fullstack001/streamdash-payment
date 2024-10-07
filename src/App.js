@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./component/CheckoutForm";
@@ -21,7 +20,6 @@ function App() {
   const currency = queryParams.get("currency");
   const [showSuccessCredit, setShowSuccessCredit] = useState(false);
   const [showCoupon, setShowCoupon] = useState(false);
-  const [product, setProduct] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState(null);
   const [couponApplied, setCouponApplied] = useState(false);
