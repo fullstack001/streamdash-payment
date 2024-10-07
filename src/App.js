@@ -58,7 +58,9 @@ function App() {
                 <p className="value">{credit} Credit</p>
               </div>
               <div className="payment-info">
-                <p className="value">${price}</p>
+                <p className="value">
+                  {price} {currency.toUpperCase()}
+                </p>
               </div>
             </div>
             <Elements stripe={stripePromise}>
