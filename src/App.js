@@ -53,7 +53,6 @@ function App() {
   const handleCouponApply = async () => {
     try {
       const response = await axios.post(`${baseUrl}/api/product/apply-coupon`, {
-        productId: product.id,
         couponCode,
       });
       setDiscountedPrice(price * (1 - response.data.discount / 100).toFixed(2));
