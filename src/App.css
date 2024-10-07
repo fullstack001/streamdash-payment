@@ -94,3 +94,42 @@
     gap: 1rem;
   }
 }
+
+.coupon-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.coupon-input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.coupon-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.coupon-apply-btn {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: white;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.coupon-apply-btn:hover {
+  background-color: #f0f8ff;
+}
+
+.coupon-apply-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

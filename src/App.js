@@ -105,16 +105,23 @@ function App() {
             </div>
             {showCoupon && !couponApplied && (
               <div className="coupon-container">
-                <input
-                  type="text"
-                  value={couponCode}
-                  onChange={(e) => setCouponCode(e.target.value)}
-                  placeholder="Enter coupon code"
-                  disabled={couponApplied}
-                />
-                <button onClick={handleCouponApply} disabled={couponApplied}>
-                  Apply
-                </button>
+                <div className="coupon-input-wrapper">
+                  <input
+                    type="text"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                    placeholder="Enter coupon code"
+                    disabled={couponApplied}
+                    className="coupon-input"
+                  />
+                  <button
+                    onClick={handleCouponApply}
+                    disabled={couponApplied}
+                    className="coupon-apply-btn"
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
             )}
             <Elements stripe={stripePromise}>
