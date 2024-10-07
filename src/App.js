@@ -18,6 +18,7 @@ function App() {
   const credit = queryParams.get("credit");
   const price = queryParams.get("price");
   const email = queryParams.get("email");
+  const currency = queryParams.get("currency");
   const [showSuccessCredit, setShowSuccessCredit] = useState(false);
 
   const handleAddCredit = () => {
@@ -40,7 +41,7 @@ function App() {
         {showSuccessCredit ? (
           <>
             <button className="back-link" onClick={handleCloseWindow}>
-              ← Back
+              ← Close
             </button>
             <h2 className="success-message">
               Payment processed successfully. You purchased {credit} credit
@@ -50,7 +51,7 @@ function App() {
         ) : (
           <>
             <button className="back-link" onClick={handleCloseWindow}>
-              ← Back
+              ← Close
             </button>
             <div className="package-details">
               <div className="package-info">
@@ -61,7 +62,11 @@ function App() {
               </div>
             </div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm amount={price} callBack={handleAddCredit} />
+              <CheckoutForm
+                amount={price}
+                currency={currency}
+                callBack={handleAddCredit}
+              />
             </Elements>
           </>
         )}

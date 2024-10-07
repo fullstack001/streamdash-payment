@@ -26,7 +26,7 @@ const cardElementOptions = {
 };
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
-const CheckoutForm = ({ amount, callBack }) => {
+const CheckoutForm = ({ amount, callBack, currency }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setProcessingTo] = useState(false);
@@ -77,6 +77,7 @@ const CheckoutForm = ({ amount, callBack }) => {
         `${baseUrl}/api/payment/create-payment-intent`,
         {
           amount: amount * 100, // Example amount in cents
+          currency: currency,
         }
       );
 
