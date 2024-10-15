@@ -1,19 +1,19 @@
 // App.js
 import React from "react";
 import Header from "./component/Header";
-import MainContent from "./component/MainContent";
+import ProductContent from "./component/ProductContent";
 import Footer from "./component/Footer";
 
-function App() {
+function Product() {
   return (
     <div className="flex flex-col min-h-screen ">
       <Header />
       <main className="flex-grow">
-        <MainContent />
+        <ProductContent />
       </main>
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default Product;

@@ -1,15 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import Pay from "./Pay";
+import Price from "./Price";
+import Product from "./Product";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/pay" element={<Pay />} />
+        <Route path="/pricing" element={<Price />} />
+        <Route path="/products" element={<Product />} />
+      </Routes>
     </Router>
   </React.StrictMode>
 );
