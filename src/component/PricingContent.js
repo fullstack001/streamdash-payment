@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PricingContent = () => {
+  const navigate = useNavigate();
+
   //   const [plans, setPlans] = useState([]);
   useEffect(() => {
     axios.get("https://api.streamdash.co/api/product").then((response) => {
@@ -20,8 +23,8 @@ const PricingContent = () => {
     },
     {
       name: "Standard",
-      price: "$16",
-      period: "/mo",
+      price: "$20",
+      period: "",
       billingInfo: "Billed as $190 per year",
       buttonText: "Choose this plan",
       features: [
@@ -32,8 +35,8 @@ const PricingContent = () => {
     },
     {
       name: "Economic",
-      price: "$29",
-      period: "/mo",
+      price: "$90",
+      period: "",
       billingInfo: "Billed as $320 per year",
       buttonText: "Choose this plan",
       features: [
@@ -45,8 +48,8 @@ const PricingContent = () => {
     },
     {
       name: "Professional",
-      price: "$39",
-      period: "/mo",
+      price: "$150",
+      period: "",
       billingInfo: "Billed as $470 per year",
       buttonText: "Choose this plan",
       features: [
@@ -58,7 +61,7 @@ const PricingContent = () => {
     },
     {
       name: "Business",
-      price: "$199",
+      price: "$500",
       period: "/mo",
       billingInfo: "Billed as $2,390 per year",
       buttonText: "Choose this plan",
@@ -71,6 +74,10 @@ const PricingContent = () => {
       ],
     },
   ];
+
+  const handleButtonClick = () => {
+    navigate("/");
+  };
 
   return (
     <section className="bg-white py-10 px-4 lg:px-20">
@@ -101,11 +108,14 @@ const PricingContent = () => {
                 {plan.period}
               </span>
             </div>
-            {plan.billingInfo && (
+            {/* {plan.billingInfo && (
               <p className="text-gray-500 text-sm mt-1">{plan.billingInfo}</p>
             )}
-            <p className="text-gray-500 text-sm mt-2">{plan.description}</p>
-            <button className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg mt-6">
+            <p className="text-gray-500 text-sm mt-2">{plan.description}</p> */}
+            <button
+              className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg mt-6"
+              onClick={handleButtonClick}
+            >
               {plan.buttonText}
             </button>
             <ul className="text-gray-700 text-sm mt-4 space-y-1">
