@@ -6,6 +6,7 @@ import App from "./App";
 import Pay from "./Pay";
 import Price from "./Price";
 import Product from "./Product";
+import Contact from "./Contact";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +18,7 @@ root.render(
         <Route path="/pay" element={<Pay />} />
         <Route path="/pricing" element={<Price />} />
         <Route path="/products" element={<Product />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   </React.StrictMode>

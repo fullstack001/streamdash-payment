@@ -9,11 +9,13 @@ const ProductContent = () => {
   return (
     <section className="bg-white py-10 px-4 lg:px-20">
       <div className="text-center">
-        <h2 className="text-blue-300 text-lg font-semibold">Multistreaming</h2>
-        <h1 className="text-3xl md:text-5xl text-blue-600    font-bold mt-2">
+        <h2 className="text-blue-300 text-lg md:text-3xl font-semibold">
+          Multistreaming
+        </h2>
+        <h1 className="text-3xl md:text-7xl text-blue-600 font-extrabold mt-2">
           Be seen, everywhere
         </h1>
-        <p className="text-gray-600 mt-2 text-sm md:text-lg">
+        <p className="text-gray-600 mt-2 text-lg md:text-3xl">
           Live stream on multiple platforms to reach more viewers faster.
         </p>
       </div>
@@ -34,7 +36,7 @@ const ProductContent = () => {
           <img
             src="/image/product/over.png" // Replace with the path to your image
             alt="Platforms"
-            className="w-3/4  md:w-3/4 xl:w-full max-w-md"
+            className="w-3/4  md:w-3/4 xl:w-full max-w-lg"
           />
         </div>
       </div>
@@ -46,9 +48,11 @@ const ProductContent = () => {
             key={index}
             className="flex-col w-full md:w-1/3 items-center text-center border-r last:border-none px-4 md:px-8"
           >
-            <h4 className="text-blue-500 text-sm font-medium">{stat.title}</h4>
+            <h4 className="text-blue-500 text-lg md:text-2xl font-medium">
+              {stat.title}
+            </h4>
 
-            <p className="text-2xl md:text-4xl mt-4 font-semibold text-gray-800">
+            <p className="text-2xl md:text-6xl mt-4 font-bold text-gray-600">
               {stat.value}
             </p>
           </div>
@@ -57,10 +61,10 @@ const ProductContent = () => {
 
       {/* Features Section */}
       <div className="mt-10">
-        <p className="text-start text-lg md:text-xl text-blue-400">
+        <p className="text-start text-xl md:text-23xl text-blue-600">
           Your unfair advantage
         </p>
-        <h2 className="text-start text-3xl md:text-5xl mt-3 font-bold text-blue-600">
+        <h2 className="text-start text-3xl md:text-6xl mt-3 font-bold text-blue-600">
           One live stream. 30+ destinations.
         </h2>
         <p className="text-start text-lg md:text-xl text-gray-600 mt-4">
@@ -96,7 +100,7 @@ const ProductContent = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-6 rounded-lg shadow-md w-full md:w-64 text-start"
+              className="bg-gray-100 p-6 rounded-lg shadow-md w-full md:w-80 text-start border border-gray-300"
             >
               <img src={feature.image} alt={feature.title} width={60} />
               <h3 className="text-lg font-semibold mb-2 text-blue-400">
@@ -109,14 +113,14 @@ const ProductContent = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="mt-10 text-center bg-blue-100 py-8 px-4 rounded-lg">
-        <h2 className="text-3xl md:text-5xl font-bold text-blue-600">
+      <div className="mt-10 text-center bg-blue-100 py-8 px-4 rounded-3xl border border-blue-400">
+        <h2 className="text-3xl md:text-7xl font-bold text-blue-600">
           Get started today.
         </h2>
-        <p className="text-2xl md:text-3xl font-semibold text-blue-400 mt-2">
+        <p className="text-2xl md:text-6xl font-semibold text-blue-600 mt-2">
           It feels good to reach more viewers.
         </p>
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-lg mt-4">
+        <button className="bg-blue-400 py-3 text-lg md:text-xl font-bold text-white px-6 py-2 rounded-lg mt-4">
           Try it for free
         </button>
       </div>

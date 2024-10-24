@@ -16,9 +16,10 @@ const PricingContent = () => {
     {
       name: "Get started, today",
       price: "$0",
-      period: "/forever",
+      period: "",
       description: "Multistreaming at no cost",
       buttonText: "Get started for free",
+      featureText: "A taste of Multistreaming",
       features: ["2 channels", "Local recordings (soon)"],
     },
     {
@@ -27,6 +28,7 @@ const PricingContent = () => {
       period: "",
       billingInfo: "Billed as $190 per year",
       buttonText: "Choose this plan",
+      featureText: "Free featurs, plus",
       features: [
         "3 channels",
         "No watermark in Studio",
@@ -39,6 +41,7 @@ const PricingContent = () => {
       period: "",
       billingInfo: "Billed as $320 per year",
       buttonText: "Choose this plan",
+      featureText: "Standard features, plus",
       features: [
         "4 channels",
         "Studio in Full HD, 1080p",
@@ -52,6 +55,7 @@ const PricingContent = () => {
       period: "",
       billingInfo: "Billed as $470 per year",
       buttonText: "Choose this plan",
+      featureText: "Economic features, plus",
       features: [
         "5 channels",
         "Studio in Full HD, 1080p",
@@ -62,9 +66,10 @@ const PricingContent = () => {
     {
       name: "Business",
       price: "$500",
-      period: "/mo",
+      period: "",
       billingInfo: "Billed as $2,390 per year",
       buttonText: "Choose this plan",
+      featureText: "Professional features, plus",
       features: [
         "8 channels",
         "30-day recording storage",
@@ -82,13 +87,13 @@ const PricingContent = () => {
   return (
     <section className="bg-white py-10 px-4 lg:px-20">
       <div className="text-center">
-        <h2 className="text-blue-300 text-lg md:text-xl font-semibold">
+        <h2 className="text-blue-300 text-xl my-6 md:text-3xl font-semibold">
           Get started, today
         </h2>
-        <h1 className="text-3xl md:text-5xl text-blue-600 font-bold mt-2">
+        <h1 className="text-3xl md:text-7xl text-blue-600 font-extrabold my-2">
           Choose how fast you want to grow
         </h1>
-        <p className="text-gray-600 text-lg md:text-xl mt-2">
+        <p className="text-gray-600 text-2xl md:text-4xl mt-6">
           Multistream & reach your audience, wherever they are.
         </p>
       </div>
@@ -97,12 +102,12 @@ const PricingContent = () => {
         {plans.map((plan, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center bg-white p-6 border rounded-lg shadow-md w-full sm:w-72 lg:w-80 ${
+            className={`flex flex-col items-center bg-white p-6 border rounded-3xl shadow-md w-full sm:w-72 lg:w-80 ${
               index === 4 ? "border-blue-500" : "border-gray-200"
             }`}
           >
             <h3 className="text-blue-600 text-lg font-semibold">{plan.name}</h3>
-            <div className="text-4xl font-bold mt-4">
+            <div className="text-3xl text-gray-500 md:text-7xl my-8 font-bold mt-4">
               {plan.price}
               <span className="text-lg font-normal text-gray-500">
                 {plan.period}
@@ -113,12 +118,15 @@ const PricingContent = () => {
             )}
             <p className="text-gray-500 text-sm mt-2">{plan.description}</p> */}
             <button
-              className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg mt-6"
+              className="bg-blue-400 text-white text-lg md:text-xl px-8 font-semibold py-2 rounded-lg mt-6"
               onClick={handleButtonClick}
             >
               {plan.buttonText}
             </button>
-            <ul className="text-gray-700 text-sm mt-4 space-y-1">
+            <div className="text-gray-700 text-xl mt-4 font-semibold text-left">
+              {plan.featureText}
+            </div>
+            <ul className="text-gray-700 text-lg mt-4 space-y-1">
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-center space-x-2">
                   <span className="text-green-500">✔️</span>

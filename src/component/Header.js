@@ -17,10 +17,10 @@ const Header = () => {
           <img
             src="/logo.png"
             alt="istreamdash logo"
-            className="h-8 w-auto mr-2"
+            className="h-8 w-auto mr-2 md:mr-8"
           />
         </Link>
-        <nav className="hidden md:flex space-x-6 font-bold text-lg pt-2">
+        <nav className="hidden md:flex space-x-16 font-bold text-xl pt-2">
           <Link to="/" className="text-gray-600 hover:text-blue-600">
             Home
           </Link>
@@ -49,9 +49,9 @@ const Header = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col items-start p-6 space-y-4 font-bold text-lg md:hidden">
+        <div className="absolute z-50 top-full left-0 w-full bg-white shadow-md flex flex-col items-start p-6 space-y-4 font-bold text-lg md:hidden">
           <Link
-            to="/home"
+            to="/"
             className="text-gray-600 hover:text-blue-600"
             onClick={toggleMobileMenu}
           >
