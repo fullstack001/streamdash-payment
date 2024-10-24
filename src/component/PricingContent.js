@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Modal from "react-modal"; // Import the modal library
+
+// Set app element for accessibility (required by react-modal)
+Modal.setAppElement("#root");
 
 const PricingContent = () => {
   const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false); // State to control modal visibility
+  const [selectedPlan, setSelectedPlan] = useState(null); // State to store the selected plan
 
-  //   const [plans, setPlans] = useState([]);
   useEffect(() => {
     axios.get("https://api.streamdash.co/api/product").then((response) => {
       console.log(response.data);
@@ -80,8 +85,13 @@ const PricingContent = () => {
     },
   ];
 
-  const handleButtonClick = () => {
-    navigate("/");
+  const handleButtonClick = (plan) => {
+    setSelectedPlan(plan); // Set the selected plan
+    setModalIsOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false); // Close the modal
   };
 
   return (
@@ -113,13 +123,9 @@ const PricingContent = () => {
                 {plan.period}
               </span>
             </div>
-            {/* {plan.billingInfo && (
-              <p className="text-gray-500 text-sm mt-1">{plan.billingInfo}</p>
-            )}
-            <p className="text-gray-500 text-sm mt-2">{plan.description}</p> */}
             <button
               className="bg-blue-400 text-white text-lg md:text-xl px-8 font-semibold py-2 rounded-lg mt-6"
-              onClick={handleButtonClick}
+              onClick={() => handleButtonClick(plan)} // Pass the plan to the handler
             >
               {plan.buttonText}
             </button>
@@ -137,6 +143,75 @@ const PricingContent = () => {
           </div>
         ))}
       </div>
+
+      {/* Modal for Checkout */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Stripe Checkout"
+        className="bg-white w-11/12 md:w-1/2 mx-auto rounded-lg shadow-lg p-6"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      >
+        <h2 className="text-2xl font-bold mb-4">
+          Checkout for {selectedPlan?.name}
+        </h2>
+        <div className="mb-4">
+          <p className="text-lg">Price: {selectedPlan?.price}</p>
+        </div>
+        {/* Payment Form */}
+        <form className="space-y-4">
+          <div>
+            <label className="block text-lg font-medium">Card Number</label>
+            <input
+              type="text"
+              className="w-full border-gray-300 rounded-md p-2 mt-1 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="1234 1234 1234 1234"
+            />
+          </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <label className="block text-lg font-medium">
+                Expiration Date
+              </label>
+              <input
+                type="text"
+                className="w-full border-gray-300 rounded-md p-2 mt-1 focus:border-blue-500 focus:ring-blue-500"
+                placeholder="MM/YY"
+              />
+            </div>
+            <div className="w-1/2">
+              <label className="block text-lg font-medium">CVC</label>
+              <input
+                type="text"
+                className="w-full border-gray-300 rounded-md p-2 mt-1 focus:border-blue-500 focus:ring-blue-500"
+                placeholder="CVC"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-lg font-medium">
+              Card Holder Name
+            </label>
+            <input
+              type="text"
+              className="w-full border-gray-300 rounded-md p-2 mt-1 focus:border-blue-500 focus:ring-blue-500"
+              placeholder="John Doe"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-md mt-4"
+          >
+            Pay {selectedPlan?.price}
+          </button>
+        </form>
+        <button
+          className="w-full bg-gray-300 text-black py-2 rounded-md mt-4"
+          onClick={closeModal}
+        >
+          Close
+        </button>
+      </Modal>
     </section>
   );
 };
